@@ -19,7 +19,8 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 
 3. **EPINET-Lite: Rethinking Mixed Convolutions for Efficient Light Field Disparity Estimation Network**  
    *Ali Hassan, Tingting Zhang, Karen Egiazarian, Mårten Sjöström*  
-   IEEE 27th International Workshop on Multimedia Signal Processing (MMSP), 2025  
+   IEEE 27th International Workshop on Multimedia Signal Processing (MMSP), 2025
+   [[Coming Soon]](https://attend.ieee.org/mmsp-2025/)
 
 ---
 
@@ -52,16 +53,16 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 
 ## 🚀 Usage
 
-- Each subdirectory corresponds to one of the papers:
-  - `LightWeight-EpiNet/`
-  - `REDARTS/`
-  - `EPINET-Lite/`
+- Each python main script corresponds to one of the papers:
+  - `EPINET_C.py`, `EPINET_CD_train.py`, `EPINET_DC_train.py`, , `EPINET_D_train.py` from Light-Weight EPINET - IEEE MMSP 2022
+  - `EPINASNET_A_train.py` and `EPINASNET_A_train.py` from REDARTS - IEEE TECTI 2025
+  - `EPINET-Lite_train.py` from IEEE MMSP 2025
 
 - Run training or evaluation scripts as described in their respective subfolders.  
 - Example:
   ```bash
-  cd LightWeight-EpiNet
-  python train.py --config configs/config.json
+  cd EPINET-Lite
+  python file_name.py
   ```
 
 ---
@@ -101,4 +102,4 @@ If you find this repository useful in your research, please cite our works:
 
 ## 📬 Contact
 
-For questions, please contact: **Ali Hassan** (ali.hassan@domain.com)
+For questions, please contact: **Ali Hassan** (ali.hassan@miun.com)
