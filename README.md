@@ -1,5 +1,7 @@
 # Light Field Disparity Estimation – Author Implementations
 
+![License](https://img.shields.io/badge/license-MIT-green) ![Status](https://img.shields.io/badge/status-Coming%20Soon-blue)
+
 This repository provides the official implementations of our three research works on **light field disparity estimation**.  
 All models are implemented in **TensorFlow** and associated Python libraries.
 
