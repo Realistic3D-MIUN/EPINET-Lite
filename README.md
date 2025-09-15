@@ -54,9 +54,9 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 ## 🚀 Usage
 
 - Each Python main script corresponds to one of the papers:
-  - `EPINET_C.py`, `EPINET_CD_train.py`, `EPINET_DC_train.py`, , `EPINET_D_train.py` from Light-Weight EPINET - IEEE MMSP 2022
-  - `EPINASNET_A_train.py` and `EPINASNET_A_train.py` from REDARTS - IEEE TECTI 2025
-  - `EPINET-Lite_train.py` from IEEE MMSP 2025
+  - EPINET-D: `EPINET_D_train.py` and `EPINET_C.py`, `EPINET_CD_train.py`, `EPINET_DC_train.py` - IEEE MMSP 2022
+  - LFNASNet: `EPINASNET_A_train.py` and `EPINASNET_B_train.py` - IEEE TECTI 2025
+  - EPINET-Lite: `EPINET-Lite_train.py` - IEEE MMSP 2025
 
 - Run training or evaluation scripts as described in their respective subfolders.  
 - Example:
