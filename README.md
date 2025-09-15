@@ -26,6 +26,29 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 
 ---
 
+## 🔎 Overview of EPINET-Lite
+
+**EPINET-Lite: Rethinking Mixed Convolutions for Efficient Light Field Disparity Estimation**  
+
+Light field disparity estimation with CNNs often suffers from **high computational cost**, mainly due to large convolutional kernels. While small kernels are efficient, they may fail to capture broader spatial-angular context.  
+
+This work introduces **EPINET-Lite**, a lightweight yet accurate network that integrates an **Optimized Mixed Convolution (MixConv+)** operation into the EPINET architecture. Unlike conventional mixed convolutions that split channels into fixed groups, MixConv+ applies **pointwise + depthwise convolutions in parallel with multiple kernel sizes**, allowing the network to learn multi-scale features more effectively.  
+
+### 🚀 Key Contributions
+- **Analysis of convolution operations:** Studied standard, depthwise separable, inverted bottleneck, and mixed convolutions across different kernel sizes.  
+- **MixConv+:** Proposed an optimized mixed convolution that improves efficiency while capturing features across multiple receptive fields.  
+- **Efficiency:** Achieves up to **4.2× reduction in model complexity** compared to standard convolutions.  
+- **Performance:** Demonstrates **improved disparity estimation performance** on the HCI light field benchmark while using **fewer parameters** and maintaining fast inference.  
+
+### 📊 Results
+- **76% reduction** in parameters compared to baseline EPINET.  
+- Achieves **lowest mean square error (MSE)** among compared methods, while staying competitive on Bad Pixel Ratio metrics.  
+- Produces sharper and more consistent disparity maps, even in challenging scenes (e.g., fine textures, occlusions).  
+
+EPINET-Lite balances **accuracy and efficiency**, making it practical for **real-time applications** and deployment on **resource-constrained environments**.  
+
+---
+
 ## ⚙️ Setup Instructions
 
 1. Clone the repository:
