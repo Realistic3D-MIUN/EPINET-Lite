@@ -15,7 +15,7 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 2. **REDARTS: Regressive Differentiable Neural Architecture Search for Exploring Optimal Light Field Disparity Estimation Network**  
    *Ali Hassan, Mårten Sjöström, Tingting Zhang, Karen Egiazarian*  
    IEEE Transactions on Emerging Topics in Computational Intelligence, 2025   
-   [[IEEE Xplore]](https://ieeexplore.ieee.org/document/](https://ieeexplore.ieee.org/document/11141437)  
+   [[IEEE Xplore]](https://ieeexplore.ieee.org/document/11141437)  
 
 3. **EPINET-Lite: Rethinking Mixed Convolutions for Efficient Light Field Disparity Estimation Network**  
    *Ali Hassan, Tingting Zhang, Karen Egiazarian, Mårten Sjöström*  
