@@ -10,7 +10,7 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 1. **Light-weight Epinet Architecture for Fast Light Field Disparity Estimation**  
    *Ali Hassan, Mårten Sjöström, Tingting Zhang, Karen Egiazarian*  
    IEEE 24th International Workshop on Multimedia Signal Processing (MMSP), 2022  
-   [[IEEE Xplore]]([https://ieeexplore.ieee.org/document/](https://ieeexplore.ieee.org/document/9949378))  
+   [[IEEE Xplore]]([https://ieeexplore.ieee.org/document/9949378])
 
 2. **REDARTS: Regressive Differentiable Neural Architecture Search for Exploring Optimal Light Field Disparity Estimation Network**  
    *Ali Hassan, Mårten Sjöström, Tingting Zhang, Karen Egiazarian*  
