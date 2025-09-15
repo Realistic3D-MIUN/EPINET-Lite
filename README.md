@@ -19,7 +19,7 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 
 3. **EPINET-Lite: Rethinking Mixed Convolutions for Efficient Light Field Disparity Estimation Network**  
    *Ali Hassan, Tingting Zhang, Karen Egiazarian, Mårten Sjöström*  
-   IEEE 27th International Workshop on Multimedia Signal Processing (MMSP), 2025
+   IEEE 27th International Workshop on Multimedia Signal Processing (MMSP), 2025   
    [[Coming Soon]](https://attend.ieee.org/mmsp-2025/)
 
 ---
@@ -28,8 +28,8 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/lightfield-disparity.git
-   cd lightfield-disparity
+   git clone https://github.com/Realistic3D-MIUN/EPINET-Lite.git
+   cd EPINET-Lite
    ```
 
 2. Create a virtual environment (recommended):
@@ -53,7 +53,7 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 
 ## 🚀 Usage
 
-- Each python main script corresponds to one of the papers:
+- Each Python main script corresponds to one of the papers:
   - `EPINET_C.py`, `EPINET_CD_train.py`, `EPINET_DC_train.py`, , `EPINET_D_train.py` from Light-Weight EPINET - IEEE MMSP 2022
   - `EPINASNET_A_train.py` and `EPINASNET_A_train.py` from REDARTS - IEEE TECTI 2025
   - `EPINET-Lite_train.py` from IEEE MMSP 2025
@@ -72,30 +72,35 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 If you find this repository useful in your research, please cite our works:
 
 ```bibtex
-@inproceedings{hassan2022lightweightepinet, 
-  title={Light-weight epinet architecture for fast light field disparity estimation},
-  author={Hassan, Ali and Sj{"o}str{"o}m, M{a}rten and Zhang, Tingting and Egiazarian, Karen},
-  booktitle={2022 IEEE 24th International Workshop on Multimedia Signal Processing (MMSP)},
-  pages={1--5},
+@INPROCEEDINGS{hassan2022lightweightepinet,
+  author={Hassan, Ali and Sjöström, Mårten and Zhang, Tingting and Egiazarian, Karen},
+  booktitle={2022 IEEE 24th International Workshop on Multimedia Signal Processing (MMSP)}, 
+  title={Light-Weight EPINET Architecture for Fast Light Field Disparity Estimation}, 
   year={2022},
-  organization={IEEE}
-}
+  volume={},
+  number={},
+  pages={1-5},
+  doi={10.1109/MMSP55362.2022.9949378}}
 
-@article{hassan2025redarts,
-  title={REDARTS: Regressive Differentiable Neural Architecture Search for Exploring Optimal Light Field Disparity Estimation Network},
-  author={Hassan, Ali and Sj{"o}str{"o}m, M{a}rten and Zhang, Tingting and Egiazarian, Karen},
-  journal={IEEE Transactions on Emerging Topics in Computational Intelligence},
+@ARTICLE{hassan2025redarts,
+  author={Hassan, Ali and Sjöström, Mårten and Zhang, Tingting and Egiazarian, Karen},
+  journal={IEEE Transactions on Emerging Topics in Computational Intelligence}, 
+  title={REDARTS: Regressive Differentiable Neural Architecture Search for Exploring Optimal Light Field Disparity Estimation Network}, 
   year={2025},
-  publisher={IEEE}
-}
+  volume={},
+  number={},
+  pages={1-12},
+  doi={10.1109/TETCI.2025.3592281}}
 
-@article{hassan2025epinetlite, 
-  title={EPINET-Lite: Rethinking Mixed Convolutions for Efficient Light Field Disparity Estimation Network}, 
-  author={Hassan, Ali and Zhang, Tingting and Egiazarian, Karen and Sj{"o}str{"o}m, M{a}rten}, 
+@INPROCEEDINGS{hassan2025epinetlite,
+  author={Hassan, Ali and Zhang, Tingting and Egiazarian, Karen and Sjöström, Mårten},
   booktitle={2025 IEEE 27th International Workshop on Multimedia Signal Processing (MMSP)}, 
+  title={EPINET-Lite: Rethinking Mixed Convolutions for Efficient Light Field Disparity Estimation Network}, 
   year={2025},
-  publisher={IEEE}
-}
+  volume={},
+  number={},
+  pages={1-6},
+  doi={10.1109/MMSP55362.2022.9949378}}
 ```
 
 ---
