@@ -1,0 +1,163 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Mar 28 15:54:06 2018
+
+@author: shinyonsei2
+"""
+from tensorflow.keras import metrics
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.models import Model, Sequential
+from tensorflow.keras.layers import Input, Activation
+from tensorflow.keras.layers import Conv2D, Reshape
+from tensorflow.keras.layers import Dropout,BatchNormalization
+from tensorflow.keras.backend import concatenate
+import numpy as np
+from tensorflow.keras import applications
+#from epinet_fun import evaluation_metric
+import math
+import tensorflow as tf
+import os.path
+from keras_flops import get_flops
+from tensorflow.keras import backend as K
+from model_profiler import model_profiler #https://pypi.org/project/model-profiler/
+
+def bpr(y_true, y_pred):
+    threshold = tf.constant(0.07, dtype=tf.float32)
+    mask = tf.cast(tf.less(y_pred, threshold), dtype=tf.float32)
+    incorrect_pixels = tf.reduce_sum(mask * (1 - y_true))
+    total_pixels = tf.reduce_sum(1 - y_true)
+    bpr = incorrect_pixels / total_pixels
+    return bpr
+
+def PSNR(y_true, y_pred):
+    max_pixel = 1.0
+    #return (10.0 * K.log((max_pixel ** 2) / (K.mean(K.square(y_pred - y_true), axis=-1)))) / 2.303
+    return 10.0 * (1.0 / math.log(10)) * K.log((max_pixel ** 2) / (K.mean(K.square(y_pred -
+y_true))))
+
+vList = []
+printStat = False
+padding = 'same' #'valid
+def layer1_multistream(input_dim1,input_dim2,input_dim3,filt_num,kernel_size):
+    seq = Sequential()
+    ''' Multi-Stream layer : Conv - Relu - Conv - BN - Relu  '''
+
+#    seq.add(Reshape((input_dim1,input_dim12,input_dim3),input_shape=(input_dim1, input_dim2, input_dim3,1)))
+    for i in range(3):
+        seq.add(Conv2D(int(filt_num),(kernel_size,1),input_shape=(input_dim1, input_dim2, input_dim3), padding=padding, name='S1_c1%d' %(i) ))
+        seq.add(Conv2D(int(filt_num),(1,kernel_size), padding=padding, name='S1_c2%d' %(i) ))
+        seq.add(Activation('relu', name='S1_relu1%d' %(i))) 
+        seq.add(Conv2D(int(filt_num),(kernel_size,1), padding=padding, name='S1_c3%d' %(i) )) 
+        seq.add(Conv2D(int(filt_num),(1,kernel_size), padding=padding, name='S1_c4%d' %(i) ))
+        seq.add(BatchNormalization(axis=-1, name='S1_BN%d' % (i)))
+        seq.add(Activation('relu', name='S1_relu2%d' %(i))) 
+
+    #seq.add(Reshape((input_dim1,input_dim2,int(filt_num))))
+    if(printStat):
+        #flops = evaluation_metric.net_flops(seq, table=True)
+        #flops2 = keras_flops.get_flops(seq,batch_size=1)
+        #print('FLOPS2: ',flops2)
+        use_units = ['GPU IDs', 'GFLOPs', 'MB', 'Million', 'MB']
+        profile, values = model_profiler(seq, Batch_size=1, use_units=use_units)
+        print(profile)
+        vList.append(values)
+    return seq
+
+def layer2_merged(input_dim1,input_dim2,input_dim3,filt_num,conv_depth,kernel_size):
+    ''' Merged layer : Conv - Relu - Conv - BN - Relu '''
+    
+    seq = Sequential()
+    
+    for i in range(conv_depth):
+        seq.add(Conv2D(filt_num,(kernel_size,1), padding=padding,input_shape=(input_dim1, input_dim2, input_dim3), name='S2_c1%d' % (i) ))
+        seq.add(Conv2D(filt_num,(1,kernel_size), padding=padding, name='S2_c2%d' % (i) ))
+        seq.add(Activation('relu', name='S2_relu1%d' %(i))) 
+        seq.add(Conv2D(filt_num,(kernel_size,1), padding=padding, name='S2_c3%d' % (i))) 
+        seq.add(Conv2D(filt_num,(1,kernel_size), padding=padding, name='S2_c4%d' % (i))) 
+        seq.add(BatchNormalization(axis=-1, name='S2_BN%d' % (i)))
+        seq.add(Activation('relu', name='S2_relu2%d' %(i)))
+
+    if(printStat):
+        #flops = evaluation_metric.net_flops(seq, table=True)
+        #flops2 = keras_flops.get_flops(seq,batch_size=1)
+        #print('FLOPS2: ',flops2)
+        use_units = ['GPU IDs', 'GFLOPs', 'MB', 'Million', 'MB']
+        profile, values = model_profiler(seq, Batch_size=1, use_units=use_units)
+        print(profile)
+        vList.append(values)
+    return seq
+
+def layer3_last(input_dim1,input_dim2,input_dim3,filt_num,kernel_size):   
+    ''' last layer : Conv - Relu - Conv ''' 
+    
+    seq = Sequential()
+    
+    for i in range(1):
+        seq.add(Conv2D(filt_num,(kernel_size,1), padding=padding,input_shape=(input_dim1, input_dim2, input_dim3), name='S3_c1%d' %(i) )) # pow(25/23,2)*12*(maybe7?) 43 3
+        seq.add(Conv2D(filt_num,(1,kernel_size), padding=padding,name='S3_c2%d' %(i) )) # pow(25/23,2)*12*(maybe7?) 43 3
+        seq.add(Activation('relu', name='S3_relu1%d' %(i)))
+        
+    seq.add(Conv2D(1,(kernel_size,kernel_size), padding=padding, name='S3_last'))
+    if(printStat):
+        #flops = evaluation_metric.net_flops(seq, table=True)
+        #flops2 = keras_flops.get_flops(seq,batch_size=1)
+        #print('FLOPS2: ',flops2)
+        use_units = ['GPU IDs', 'GFLOPs', 'MB', 'Million', 'MB']
+        profile, values = model_profiler(seq, Batch_size=1, use_units=use_units)
+        print(profile)
+        vList.append(values)
+    return seq
+
+def define_epinet(sz_input,sz_input2,view_n,conv_depth,filt_num,learning_rate,kernel_size):
+
+    tFlops = 0
+    tMem = 0
+    tParam = 0
+    tMem_req = 0
+
+    ''' 4-Input : Conv - Relu - Conv - BN - Relu ''' 
+    input_stack_90d = Input(shape=(sz_input,sz_input2,len(view_n)), name='input_stack_90d')
+    input_stack_0d = Input(shape=(sz_input,sz_input2,len(view_n)), name='input_stack_0d')
+    input_stack_45d = Input(shape=(sz_input,sz_input2,len(view_n)), name='input_stack_45d')
+    input_stack_M45d = Input(shape=(sz_input,sz_input2,len(view_n)), name='input_stack_M45d')
+    
+    ''' 4-Stream layer : Conv - Relu - Conv - BN - Relu ''' 
+    mid_90d=layer1_multistream(sz_input,sz_input2,len(view_n),int(filt_num),kernel_size)(input_stack_90d)
+    mid_0d=layer1_multistream(sz_input,sz_input2,len(view_n),int(filt_num),kernel_size)(input_stack_0d)
+    mid_45d=layer1_multistream(sz_input,sz_input2,len(view_n),int(filt_num),kernel_size)(input_stack_45d)
+    mid_M45d=layer1_multistream(sz_input,sz_input2,len(view_n),int(filt_num),kernel_size)(input_stack_M45d)
+
+    ''' Merge layers ''' 
+    mid_merged = concatenate([mid_90d,mid_0d,mid_45d,mid_M45d])
+
+    ''' Merged layer : Conv - Relu - Conv - BN - Relu '''
+    mid_merged_=layer2_merged(sz_input,sz_input2,int(4*filt_num),int(4*filt_num),conv_depth,kernel_size)(mid_merged)
+
+    ''' Last Conv layer : Conv - Relu - Conv '''
+    output=layer3_last(sz_input,sz_input2,int(4*filt_num),int(4*filt_num),kernel_size)(mid_merged_)
+
+    model_512 = Model(inputs = [input_stack_90d,input_stack_0d,
+                               input_stack_45d,input_stack_M45d], outputs = [output])
+    opt = RMSprop(learning_rate=learning_rate)
+    model_512.compile(optimizer=opt, loss='mae', metrics=[metrics.MeanSquaredError(),bpr])
+    return model_512
+
+def evaluateEPINet():
+    image_w = 512
+    image_h = 512
+    model_conv_depth = 7 # 7 convolutional blocks for second layer
+    model_filt_num = 70
+    model_learning_rate = 0.1**4
+    Setting02_AngualrViews = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8])  # number of views ( 0~8 for 9x9 )
+    model = define_epinet(image_w, image_h,
+                              Setting02_AngualrViews,
+                              model_conv_depth,
+                              model_filt_num,
+                              model_learning_rate)
+    model.summary(expand_nested=True)
+    #evaluation_metric.get_flops(model)
+
+
+
+if __name__ == '__main__':
+    evaluateEPINet()
