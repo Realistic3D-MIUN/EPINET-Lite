@@ -94,19 +94,13 @@ EPINET-Lite balances **accuracy and efficiency**, making it practical for **real
 
 Follow these steps to evaluate and compare your model’s outputs.
 
-### 1) Clone this repo
-```bash
-git clone https://github.com/your-org/your-repo.git
-cd your-repo
-```
-
-### 2) Install the evaluation toolkit
+### 1) Install the evaluation toolkit
 Follow the setup instructions here: https://github.com/lightfield-analysis/evaluation-toolkit
 
-### 3) Prepare outputs
+### 2) Prepare outputs
 Place model’s prediction files in: algo_results/
 
-### 4) Run the evaluation
+### 3) Run the evaluation
 ```bash
 python run_evaluation.py --visualize
 ```
