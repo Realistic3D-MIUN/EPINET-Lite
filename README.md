@@ -1,7 +1,5 @@
 # Light Field Disparity Estimation – Author Implementations
 
-![License](https://img.shields.io/badge/license-MIT-green) ![Status](https://img.shields.io/badge/status-Coming%20Soon-blue)
-
 This repository provides the official implementations of our three research works on **light field disparity estimation**.  
 All models are implemented in **TensorFlow** and associated Python libraries.
 
@@ -91,6 +89,27 @@ EPINET-Lite balances **accuracy and efficiency**, making it practical for **real
   ```
 
 ---
+
+## 🔍 Comparing Your Results
+
+Follow these steps to evaluate and compare your model’s outputs.
+
+### 1) Clone this repo
+```bash
+git clone https://github.com/your-org/your-repo.git
+cd your-repo
+```
+
+### 2) Install the evaluation toolkit
+Follow the setup instructions here: https://github.com/lightfield-analysis/evaluation-toolkit
+
+### 3) Prepare outputs
+Place model’s prediction files in: algo_results/
+
+### 4) Run the evaluation
+```bash
+python run_evaluation.py --visualize
+```
 
 ## 📚 Citation
 
