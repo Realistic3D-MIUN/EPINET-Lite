@@ -147,6 +147,17 @@ If you find this repository useful in your research, please cite our works:
   doi={10.1109/MMSP55362.2022.9949378}}
 ```
 
+
+
+# Acknowledgements
+The computations/data handling were/was enabled by resources provided by the National Academic Infrastructure for Supercomputing in Sweden (NAISS) at Chalmers Centre for Computational Science and Engineering (C3SE), partially funded by the Swedish Research Council through grant agreement no. 2022-06725.
+
+The code is modified and heavily borrowed from
+EPINET: [https://github.com/chshin10/epinet]
+
+The code they provided is greatly appreciated.
+
+
 ---
 
 ## 📬 Contact
