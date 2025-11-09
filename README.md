@@ -138,7 +138,7 @@ If you find this repository useful in your research, please cite our works:
   volume={},
   number={},
   pages={1-6},
-  doi={10.1109/MMSP55362.2022.9949378}}
+  doi={}}
 ```
 
 
