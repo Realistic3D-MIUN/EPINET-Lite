@@ -20,7 +20,7 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 3. **EPINET-Lite: Rethinking Mixed Convolutions for Efficient Light Field Disparity Estimation Network**  
    *Ali Hassan, Tingting Zhang, Karen Egiazarian, Mårten Sjöström*  
    IEEE 27th International Workshop on Multimedia Signal Processing (MMSP), 2025   
-   [[Coming Soon]](https://attend.ieee.org/mmsp-2025/)
+   [[MIUN DiVA Portal]](https://miun.diva-portal.org/smash/get/diva2:2016965/FULLTEXT01.pdf)
 
 ---
 
