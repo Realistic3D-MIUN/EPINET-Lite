@@ -20,7 +20,7 @@ All models are implemented in **TensorFlow** and associated Python libraries.
 3. **EPINET-Lite: Rethinking Mixed Convolutions for Efficient Light Field Disparity Estimation Network**  
    *Ali Hassan, Tingting Zhang, Karen Egiazarian, Mårten Sjöström*  
    IEEE 27th International Workshop on Multimedia Signal Processing (MMSP), 2025   
-   [[MIUN DiVA Portal]](https://miun.diva-portal.org/smash/get/diva2:2016965/FULLTEXT01.pdf)
+   [[IEEE Xplore]](https://ieeexplore.ieee.org/document/11324204)
 
 ---
 
@@ -124,21 +124,21 @@ If you find this repository useful in your research, please cite our works:
   author={Hassan, Ali and Sjöström, Mårten and Zhang, Tingting and Egiazarian, Karen},
   journal={IEEE Transactions on Emerging Topics in Computational Intelligence}, 
   title={REDARTS: Regressive Differentiable Neural Architecture Search for Exploring Optimal Light Field Disparity Estimation Network}, 
-  year={2025},
-  volume={},
-  number={},
-  pages={1-12},
+  year={2026},
+  volume={10},
+  number={1},
+  pages={531-542},
   doi={10.1109/TETCI.2025.3592281}}
 
 @INPROCEEDINGS{hassan2025epinetlite,
   author={Hassan, Ali and Zhang, Tingting and Egiazarian, Karen and Sjöström, Mårten},
-  booktitle={2025 IEEE 27th International Workshop on Multimedia Signal Processing (MMSP)}, 
+  booktitle={2025 IEEE International Workshop on Multimedia Signal Processing (MMSP)}, 
   title={EPINET-Lite: Rethinking Mixed Convolutions for Efficient Light Field Disparity Estimation Network}, 
   year={2025},
   volume={},
   number={},
-  pages={1-6},
-  doi={}}
+  pages={120-125},
+  doi={10.1109/MMSP64401.2025.11324204}}
 ```
 
 
